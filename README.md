@@ -22,6 +22,12 @@ Simply put Kick username as the first argument to the program call.
 kick-chat xQc
 ```
 
+## How to package with PyInstaller
+
+```
+pyinstaller main.py --onefile --hidden-import _cffi_backend
+```
+
 ## License
 
 Licensed under [GPLv3 License](./LICENSE).
