@@ -14,6 +14,7 @@ from kick_chat.utils import hex_to_rgb
 
 class Client:
     def __init__(self, *, username: str):
+        self.username = username
         self.create_file()
         self.chatroom_id = self.username_to_id(username)
 
@@ -84,7 +85,13 @@ class Client:
         minute = now.minute
         second = now.second
         execution_path = os.path.dirname(sys.argv[0])
-        year_path = os.path.join(execution_path, str(year))
+        chatlog_path = os.path.join(execution_path, "chatlogs")
+        if not os.path.exists(chatlog_path):
+            os.makedirs(chatlog_path)
+        username_path = os.path.join(chatlog_path, self.username)
+        if not os.path.exists(username_path):
+            os.makedirs(username_path)
+        year_path = os.path.join(username_path, str(year))
         if not os.path.exists(year_path):
             os.makedirs(year_path)
         month_path = os.path.join(year_path, str(month))
