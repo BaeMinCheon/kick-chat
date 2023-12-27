@@ -91,17 +91,8 @@ class Client:
         username_path = os.path.join(chatlog_path, self.username)
         if not os.path.exists(username_path):
             os.makedirs(username_path)
-        year_path = os.path.join(username_path, str(year))
-        if not os.path.exists(year_path):
-            os.makedirs(year_path)
-        month_path = os.path.join(year_path, str(month))
-        if not os.path.exists(month_path):
-            os.makedirs(month_path)
-        day_path = os.path.join(month_path, str(day))
-        if not os.path.exists(day_path):
-            os.makedirs(day_path)
         file_name = f"{year}-{month}-{day}_{hour}-{minute}-{second}.csv"
-        self.chat_log_path = os.path.join(day_path, file_name)
+        self.chat_log_path = os.path.join(username_path, file_name)
         with open(self.chat_log_path, "w+") as chat_log:
             if chat_log is None:
                 print("[Error] Failed to create the file for chat log. Contact to the engineer for a help.")
