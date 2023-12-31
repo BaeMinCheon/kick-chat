@@ -42,7 +42,7 @@ class Client:
 
     def messageEvent(self, ws, data):
         time = (
-            parse(data["created_at"]).astimezone(tz=None).strftime("%H:%M:%S")
+            parse(data["created_at"]).astimezone(tz=None).strftime("%y-%m-%d %H:%M:%S")
         )
         message = data["content"]
         user = data["sender"]["username"]
