@@ -20,12 +20,15 @@ def copy_cert():
     print("copied_cert_path: " + new_path)
 
 def main(argv=sys.argv) -> int:
-    if len(argv) != 2:
-        print("Usage: kick-chat <channel_name>")
+    if len(argv) < 2:
+        print("Usage: kick-chat <channel_name> <keyword:optional>")
         return 1
     if getattr( sys , 'frozen' , None ):
         copy_cert()
-    client = Client(username=argv[1])
+    if len(argv) == 2:
+        client = Client(username=argv[1])
+    if len(argv) > 2:
+        client = Client(username=argv[1], keyword=argv[2])
     client.listen()
     return 0
 
